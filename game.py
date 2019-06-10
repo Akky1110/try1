@@ -2,8 +2,6 @@ import random
 
 import arcade as arcade
 
-
-
 class MyGame(arcade.Window):
 
     def __init__(self, width, height, title):
@@ -19,13 +17,11 @@ class MyGame(arcade.Window):
 
         self.coin_list = arcade.SpriteList()
         for i in range(50):
-            coin = arcade.Sprite('coin.png', 0.05)
+            coin = arcade.Sprite('coin.png', 0.03)
             coin.center_x = random.randrange(600)
             coin.center_y = random.randrange(600)
             self.all_sprites_list.append(coin)
             self.coin_list.append(coin)
-
-
 
     def on_draw(self):
         arcade.start_render()
@@ -34,8 +30,15 @@ class MyGame(arcade.Window):
         self.all_sprites_list.draw()
 
     def update(self, delta_time: float):
-        self.score += 1
         self.all_sprites_list.update()
+        hit_list = arcade.check_for_collision_with_list(
+            self.player_sprite,
+            self.coin_list
+        )
+
+        for coin in hit_list:
+            coin.kill()
+            self.score += 1
 
     def on_mouse_motion(self, x: float, y: float, dx: float, dy: float):
         self.player_sprite.center_x = x
