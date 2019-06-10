@@ -1,11 +1,12 @@
 import arcade as arcade
 
+class MyGame(arcade.Window):
+    def on_draw(self):
+        arcade.start_render()
+        arcade.draw_text('Hello', 100, 100, arcade.color.WHITE)
 
 def main():
-    arcade.open_window(600, 600, 'My Game')
-    arcade.start_render()
-    arcade.draw_text('Hello', 100, 100, arcade.color.WHITE)
-    arcade.finish_render()
+    MyGame(600, 600, 'My Game')
     arcade.run()
 
 
