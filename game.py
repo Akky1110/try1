@@ -1,5 +1,5 @@
 import arcade as arcade
-import random
+
 
 
 class MyGame(arcade.Window):
