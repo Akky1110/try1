@@ -7,11 +7,15 @@ class MyGame(arcade.Window):
     def __init__(self, width, height, title):
         super().__init__(width, height, title)
         arcade.set_background_color(arcade.color.AMAZON)
+        self.score = 0
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text('Hello', 100, 100, arcade.color.WHITE)
+        output = f'Score: {self.score: 02d}'
+        arcade.draw_text(output, 100, 100, arcade.color.WHITE)
 
+    def update(self, delta_time: float):
+        self.score += 1
 
 def main():
     MyGame(600, 600, 'My Game')
