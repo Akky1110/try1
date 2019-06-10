@@ -1,3 +1,5 @@
+import random
+
 import arcade as arcade
 
 
@@ -14,6 +16,15 @@ class MyGame(arcade.Window):
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 50
         self.all_sprites_list.append(self.player_sprite)
+
+        self.coin_list = arcade.SpriteList()
+        for i in range(50):
+            coin = arcade.Sprite('coin.png', 0.05)
+            coin.center_x = random.randrange(600)
+            coin.center_y = random.randrange(600)
+            self.all_sprites_list.append(coin)
+            self.coin_list.append(coin)
+
 
 
     def on_draw(self):
